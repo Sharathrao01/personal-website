@@ -1,0 +1,234 @@
+%-------------------------
+% Resume in LaTeX
+% Based on: Jake's Resume (github.com/jakeryang/resume)
+% License : MIT
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% PDF machine readable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%===========================================
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge \scshape Sharath S Rao} \\ \vspace{4pt}
+    \small
+    \href{tel:+919900513754}{+91 99005 13754} $|$
+    \href{mailto:sharathsrao4@gmail.com}{sharathsrao4@gmail.com} $|$
+    Bangalore, India $|$
+    \href{https://linkedin.com/in/sharath-s-rao}{linkedin.com/in/sharath-s-rao} $|$
+    \href{https://github.com/Sharathrao01}{github.com/Sharathrao01}
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    GenAI Systems Engineer with 3+ years building production-grade LLM systems serving 24,000+ users.
+    Specializes in multi-agent architecture (LangGraph), RAG pipelines, context engineering, and
+    Evaluation-Driven Development. Proven track record shipping reliable AI systems using CI-integrated
+    eval pipelines, LLM-as-Judge, and structured quality gates. Equally comfortable across the full
+    stack --- AI systems, backend engineering, and QA --- in early-stage product environments.
+    Active open-source contributor to the LangChain ecosystem.
+  }}
+\end{itemize}
+\vspace{-8pt}
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{LLM Orchestration}{: LangChain, LangGraph, LangSmith, Ollama} \\
+    \textbf{Multi-Agent Systems}{: Multi-Agent Architecture, Agentic Workflows, Graph-based Workflow Orchestration} \\
+    \textbf{Evaluation \& Reliability}{: Evaluation-Driven Development (EDD), LLM-as-Judge, RAGAS, Promptfoo, DeepEval, CI-integrated Evals, Hallucination Detection, Guardrails, Red Teaming, Output Validation} \\
+    \textbf{RAG \& Retrieval}{: Retrieval-Augmented Generation, Semantic Search, Hybrid Search, MMR, HNSW, Embeddings, Chunking Strategies} \\
+    \textbf{Vector Databases}{: PostgreSQL pgvector, Pinecone} \\
+    \textbf{Prompt \& Context Engineering}{: Prompt Engineering, Context Engineering, Structured Outputs, Function Calling, Tool Calling, Schema-Constrained Prompting} \\
+    \textbf{Open-Source Models}{: DeepSeek, Llama, local model deployment via Ollama} \\
+    \textbf{Performance}{: Batching, Parallel Processing, Async Pipelines, Model Routing, Retry/Fallback, Low-Latency Inference} \\
+    \textbf{Full Stack \& Infra}{: Python, NestJS, Next.js, REST APIs, PostgreSQL, Docker, System Design (HLD/LLD), UML, Multi-tenancy}
+  }}
+\end{itemize}
+\vspace{-4pt}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Technical Head --- AI, Full Stack \& QA}{Jan 2025 -- Present}
+      {TestMySkills.ai $\cdot$ Zyni Innovations}{Bangalore, India}
+      \resumeItemListStart
+        \resumeItem{Multi-disciplinary founding engineer across AI systems, full-stack development, and quality engineering on a B2C/B2B skill assessment platform with multi-tenant architecture supporting enterprise clients.}
+        \resumeItem{\textbf{AI Systems:} Architected multi-agent LLM systems using LangGraph with modular, graph-based workflow orchestration for intelligent, adaptive assessment delivery.}
+        \resumeItem{\textbf{Pioneered Evaluation-Driven Development (EDD):} built a CI-integrated eval pipeline where known failure cases are stored in a DB and automatically replayed as pre-commit checks --- enabling confident feature shipping 95\%+ of the time.}
+        \resumeItem{\textbf{Built RAG pipelines achieving $\sim$90\% accuracy} using advanced chunking, embedding tuning, and MMR retrieval; monitored and iterated using LangSmith observability.}
+        \resumeItem{\textbf{Optimized semantic search} with PostgreSQL pgvector using HNSW indexing, improving retrieval relevance and downstream LLM response quality.}
+        \resumeItem{\textbf{Full Stack:} Built and maintained B2C and B2B product features across Next.js frontend and NestJS backend; designed and implemented multi-tenant architecture.}
+        \resumeItem{\textbf{QA Engineering:} Established quality processes, test coverage strategies, and automated testing pipelines across the platform.}
+        \resumeItem{Scaled platform to 24,000+ users with stable performance using async pipelines, model routing, and fault-tolerant retry/fallback mechanisms.}
+        \resumeItem{Led an 8-engineer team --- owning architecture (HLD + LLD), sprint execution, and cross-functional delivery.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {AI Engineer}{Jun 2024 -- Jan 2025}
+      {Zysk Technologies}{Bangalore, India}
+      \resumeItemListStart
+        \resumeItem{\textbf{Built the AI-based Skill Mastery Evaluation System} --- automated LLM-based scoring and feedback system serving 24,000+ users across skill assessment workflows.}
+        \resumeItem{\textbf{Reduced evaluation latency 80\%} (5 min $\rightarrow$ 1 min) through batching and parallel LLM execution across concurrent workloads.}
+        \resumeItem{Implemented \textbf{LLM routing by model availability and cost} --- maintained output quality while measurably reducing inference spend.}
+        \resumeItem{Built \textbf{LLM-as-Judge pipelines} for hallucination detection, automated output verification, and quality assessment at scale.}
+        \resumeItem{Engineered \textbf{fault-tolerant inference} with structured retry logic, fallback model chains, and guardrails.}
+        \resumeItem{\textbf{PushsendAI (Zysk):} Designed and built a personalized product recommendation engine using reinforcement learning and matrix factorization on user purchase profiles; engineered prompt-based email personalization using open-source models. Pilot commended by Veronica Beard (US fashion brand).}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {AI Engineer Intern}{Mar 2023 -- Jun 2024}
+      {Zysk Technologies}{Bangalore, India}
+      \resumeItemListStart
+        \resumeItem{Developed \textbf{prompt engineering frameworks} for scalable personalized generation across multiple product use cases.}
+        \resumeItem{Built \textbf{structured-output pipelines} using schema-constrained prompting prior to native function-calling support in LLM APIs.}
+        \resumeItem{Worked on hallucination mitigation strategies and LLM controllability and steering techniques.}
+        \resumeItem{Designed and evaluated prompt optimization strategies to improve accuracy, consistency, and controllability in LLM outputs.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      \resumeSubheading
+          {Zyskie --- AI-Powered HRMS Platform}{2026}
+          {Zyni Innovations $\cdot$ Product Owner \& Lead Engineer $\cdot$ Team of 8}{}
+          \resumeItemListStart
+            \resumeItem{Built a full GenAI-powered HRMS covering intelligent hiring, workforce management, and internal talent discovery.}
+            \resumeItem{Owned \textbf{end-to-end system architecture} (HLD + LLD + UML diagrams) and led technical delivery across the full stack.}
+            \resumeItem{Implemented \textbf{PostgreSQL pgvector with HNSW and MMR} for embedding-based semantic search --- enabling expert identification, mentor matching, and AI-driven team formation.}
+            \resumeItem{Deployed \textbf{open-source models (DeepSeek) via Ollama} for cost-effective, privacy-preserving local inference.}
+            \resumeItem{Built LLM-powered hiring workflows: JD generation, candidate evaluation, and automated scoring pipelines.}
+            \resumeItem{Integrated RBAC, n8n workflow automation, and SaaS connectors (Zoho, Keka, BambooHR) on a PostgreSQL backend.}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {B.Tech in Information Science \& Engineering}{2020 -- 2024}
+      {JSS Academy of Technical Education}{Bangalore, India}
+      \resumeItemListStart
+        \resumeItem{CGPA: 8.8 / 10.0}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PUBLICATIONS-----------
+\section{Publications}
+  \resumeSubHeadingListStart
+    \resumeSubItem{\textbf{Hardware Inventory Management System Using IoT} --- IEEE (9 citations)}
+    \resumeSubItem{\textbf{Interactive Framework for Querying Data from Large PDFs} --- IEEE (7 citations)}
+    \resumeSubItem{\textbf{Traffic Control Management System for Emergency Vehicles} --- Telematique Journal}
+  \resumeSubHeadingListEnd
+
+%-----------OPEN SOURCE-----------
+\section{Open Source}
+  \resumeSubHeadingListStart
+    \resumeSubItem{\textbf{LangChain (langchain-ai)} --- Active contributor to the LangChain open-source ecosystem; contributed to the HANAVector self-query retriever module through hands-on internals review.}
+  \resumeSubHeadingListEnd
+
+%-----------SPEAKING & COMMUNITY-----------
+\section{Speaking \& Community}
+  \resumeSubHeadingListStart
+    \resumeSubItem{\textbf{Keynote Speaker} --- IEEE Student Chapter Inauguration, Bangalore (150+ attendees); spoke on the intersection of GenAI and metacognition in learning and knowledge systems.}
+    \resumeSubItem{\textbf{Prompt Engineering Educator} --- Conducted 5+ sessions at KSIT, JSS, SJCE Mysore, Presidency University for student and faculty development programs; 30--50 attendees per session.}
+    \resumeSubItem{Head of Advisory Committee --- Basavanagudi Government School.}
+  \resumeSubHeadingListEnd
+
+%-----------AWARDS-----------
+\section{Awards \& Recognition}
+  \resumeSubHeadingListStart
+    \resumeSubItem{\textbf{Emerging Leader Award (2025)} --- Recognized for technical leadership and platform impact.}
+    \resumeSubItem{\textbf{Captain of Change Agents} --- Zysk Technologies.}
+  \resumeSubHeadingListEnd
+
+\end{document}
