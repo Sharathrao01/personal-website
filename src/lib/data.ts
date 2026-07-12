@@ -69,6 +69,23 @@ export const workEntries: WorkEntry[] = [
       "Deployed open-source models (DeepSeek) via Ollama for cost-effective, privacy-preserving local inference.",
     ],
   },
+  {
+    role: "Frontend Engineer Intern",
+    org: "Ventriks",
+    period: "2023",
+    location: "India",
+    roleBullets: [
+      "Built and maintained frontend features for scalable web applications, working directly under the engineering lead.",
+      "Consistently receptive to new problem statements, with an exploring-and-learning mindset toward unfamiliar tools and technologies.",
+      "Recognized for commitment to assigned responsibilities and a positive impact on team building.",
+    ],
+    projectTitle: "Frontend engineering — Ventriks",
+    projectSubtitle: "Ventriks · Frontend Engineer Intern",
+    projectBullets: [
+      "Built and maintained frontend features for scalable web applications, working directly under the engineering lead.",
+      "Consistently receptive to new problem statements, with an exploring-and-learning mindset toward unfamiliar tools and technologies.",
+    ],
+  },
 ];
 
 export const education = {
