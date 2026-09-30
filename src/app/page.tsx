@@ -1,6 +1,9 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import SectionNav from "@/components/section-nav";
+import StreamText from "@/components/stream-text";
+import CountUp from "@/components/count-up";
+import ThemeToggle from "@/components/theme-toggle";
 import { GitHubIcon, LinkedInIcon, MailIcon, ArrowUpRight, ArrowRight } from "@/components/icons";
 import {
   experience,
@@ -48,32 +51,54 @@ export default function Home() {
 function Sidebar() {
   return (
     <header className="pt-16 md:pt-20 lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[42%] lg:flex-col lg:justify-between lg:py-24">
-      <div className="rise">
-        <div className="relative size-20 overflow-hidden rounded-full ring-1 ring-line ring-offset-4 ring-offset-bg">
-          <Image
-            src="/photos/individual-pics/portrait.jpg"
-            alt="Sharath S Rao"
-            fill
-            sizes="80px"
-            className="object-cover object-top"
-            priority
+      <div>
+        <div className="relative size-[88px] animate-rise">
+          <div
+            aria-hidden
+            className="absolute inset-0 animate-spin-slow rounded-full bg-[conic-gradient(from_0deg,var(--accent),transparent_30%,var(--saffron)_55%,transparent_75%,var(--accent))] opacity-80"
+          />
+          <div className="absolute inset-[3px] overflow-hidden rounded-full border-[3px] border-bg">
+            <Image
+              src="/photos/individual-pics/portrait.jpg"
+              alt="Sharath S Rao"
+              fill
+              sizes="88px"
+              className="object-cover object-top"
+              priority
+            />
+          </div>
+          <span
+            aria-hidden
+            title="Open to conversations"
+            className="absolute bottom-1 right-1 size-3.5 rounded-full border-2 border-bg bg-moss-400 shadow-[0_0_12px_var(--accent)]"
           />
         </div>
-        <h1 className="mt-7 text-4xl font-semibold tracking-tight sm:text-5xl">Sharath S Rao</h1>
-        <h2 className="mt-3 text-lg font-medium text-ink sm:text-xl">
+
+        <h1
+          className="text-gradient mt-7 animate-rise text-4xl font-semibold tracking-tight sm:text-5xl"
+          style={{ animationDelay: "80ms" }}
+        >
+          Sharath S Rao
+        </h1>
+        <h2
+          className="mt-3 animate-rise text-lg font-medium text-ink sm:text-xl"
+          style={{ animationDelay: "160ms" }}
+        >
           GenAI Systems Engineer &amp; Technical Leader
         </h2>
         <p className="mt-4 max-w-sm text-ink-dim">
-          I build multi-agent LLM systems that{" "}
-          <em className="font-serif text-[1.2em] italic text-accent">hold up</em> — in production,
-          on a team, and in the ground.
+          <StreamText
+            tokens={["I build multi-agent LLM systems that", { em: "hold up" }, "— in production, on a team, and in the ground."]}
+          />
         </p>
 
-        <dl className="mt-8 flex gap-8">
+        <dl className="mt-8 flex animate-rise gap-8" style={{ animationDelay: "400ms" }}>
           {proofStats.map((s) => (
             <div key={s.label} className="flex flex-col">
               <dt className="mt-1 max-w-[14ch] text-xs leading-snug text-ink-faint">{s.label}</dt>
-              <dd className="order-first font-mono text-2xl text-ink">{s.value}</dd>
+              <dd className="order-first font-mono text-2xl text-ink tabular-nums">
+                <CountUp value={s.value} />
+              </dd>
             </div>
           ))}
         </dl>
@@ -81,7 +106,7 @@ function Sidebar() {
         <SectionNav />
       </div>
 
-      <div className="mt-10 flex items-center gap-5 lg:mt-0">
+      <div className="mt-10 flex animate-rise items-center gap-5 lg:mt-0" style={{ animationDelay: "550ms" }}>
         <Social href={GITHUB} label="GitHub">
           <GitHubIcon />
         </Social>
@@ -93,10 +118,11 @@ function Sidebar() {
         </Social>
         <a
           href={RESUME}
-          className="ml-2 inline-flex items-center gap-2 rounded-full border border-line px-4 py-1.5 font-mono text-xs text-ink transition-colors hover:border-accent hover:text-accent"
+          className="border-shimmer ml-2 inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-mono text-xs text-ink transition-colors hover:text-accent"
         >
           Résumé <ArrowUpRight />
         </a>
+        <ThemeToggle />
       </div>
     </header>
   );
@@ -122,7 +148,7 @@ function Section({ id, label, children }: { id: string; label: string; children:
   return (
     <section id={id} aria-label={label} className="mb-24 scroll-mt-16 md:mb-32 lg:scroll-mt-24">
       <div className="sticky top-0 z-20 -mx-6 mb-6 bg-bg/80 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only">
-        <h2 className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-ink">
+        <h2 className="eyebrow font-semibold text-ink">
           {label}
         </h2>
       </div>
@@ -137,7 +163,7 @@ function Tags({ tags }: { tags: string[] }) {
       {tags.map((t) => (
         <li
           key={t}
-          className="rounded-full bg-accent-soft px-3 py-1 font-mono text-[11px] leading-5 text-accent"
+          className="tag"
         >
           {t}
         </li>
@@ -161,7 +187,7 @@ function HoverCard({ children, className = "" }: { children: ReactNode; classNam
 function About() {
   return (
     <Section id="about" label="About">
-      <div className="flex flex-col gap-4 text-ink-dim">
+      <div className="reveal flex flex-col gap-4 text-ink-dim">
         <p>
           I started as an intern writing prompt-engineering frameworks before function calling
           existed in most LLM APIs. Today I&rsquo;m <Strong>Technical Head</Strong> at{" "}
@@ -197,7 +223,7 @@ function Experience() {
     <Section id="experience" label="Experience">
       <ol className="group/list flex flex-col gap-12">
         {experience.map((e) => (
-          <li key={e.role + e.period}>
+          <li key={e.role + e.period} className="reveal">
             <HoverCard className="sm:grid sm:grid-cols-8 sm:gap-6">
               <p className="mb-2 mt-1 font-mono text-xs uppercase tracking-wide text-ink-faint sm:col-span-2">
                 {e.period}
@@ -230,7 +256,7 @@ function Projects() {
     <Section id="projects" label="Projects">
       <ul className="group/list flex flex-col gap-12">
         {projects.map((p) => (
-          <li key={p.name}>
+          <li key={p.name} className="reveal">
             <HoverCard className="sm:grid sm:grid-cols-8 sm:gap-6">
               <div className="mb-3 sm:col-span-2 sm:mb-0">
                 <div className="font-mono text-2xl text-saffron">{p.metric}</div>
@@ -250,7 +276,7 @@ function Projects() {
       </ul>
 
       <div className="mt-20">
-        <h3 className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-ink">
+        <h3 className="flex items-center gap-3 eyebrow text-ink">
           Building in public
           <span className="rounded-full border border-line px-2 py-0.5 text-[10px] normal-case tracking-normal text-ink-faint">
             in progress
@@ -258,12 +284,12 @@ function Projects() {
         </h3>
         <ul className="mt-6 grid gap-3 sm:grid-cols-2">
           {openSource.map((r) => (
-            <li key={r.name}>
+            <li key={r.name} className="reveal">
               <a
                 href={`${GITHUB}/${r.name}`}
                 target="_blank"
                 rel="noreferrer"
-                className="group flex h-full flex-col rounded-lg border border-line bg-surface p-5 transition-colors hover:border-accent/50 hover:bg-surface-hover"
+                className="card card-glow card-interactive group flex h-full flex-col p-5"
               >
                 <span className="flex items-center gap-2 font-mono text-sm text-ink group-hover:text-accent">
                   <GitHubIcon className="size-4 shrink-0" />
@@ -291,8 +317,8 @@ const eddSteps = [
 function Leadership() {
   return (
     <Section id="leadership" label="Leadership">
-      <div className="rounded-xl border border-line bg-surface p-6 md:p-8">
-        <p className="font-mono text-xs uppercase tracking-[0.18em] text-saffron">Case study</p>
+      <div className="card card-glow reveal p-6 md:p-8">
+        <p className="eyebrow text-saffron">Case study</p>
         <h3 className="mt-3 text-2xl font-semibold tracking-tight">
           Evaluation-Driven Development
         </h3>
@@ -301,10 +327,13 @@ function Leadership() {
           failure cases live in a database and replay automatically before code ships — paired with
           LLM-as-Judge pipelines for hallucination detection across the assessment platform.
         </p>
-        <ol className="mt-8 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-4">
+        <div className="relative mt-8 overflow-hidden rounded-lg">
+        <span aria-hidden className="absolute top-0 z-10 hidden h-px w-28 animate-beam bg-gradient-to-r from-transparent via-accent to-transparent sm:block" />
+        <span aria-hidden className="absolute bottom-0 z-10 hidden h-px w-28 animate-beam bg-gradient-to-r from-transparent via-saffron to-transparent [animation-delay:1.6s] sm:block" />
+        <ol className="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-4">
           {eddSteps.map((s, i) => (
-            <li key={s.n} className="relative bg-bg p-4">
-              <span className="font-mono text-[11px] text-accent">{s.n}</span>
+            <li key={s.n} className="group/step relative bg-bg p-4 transition-colors hover:bg-surface-hover">
+              <span className="font-mono text-[11px] text-accent transition-transform group-hover/step:scale-110 inline-block">{s.n}</span>
               <div className="mt-1 font-medium text-ink">{s.title}</div>
               <p className="mt-1 text-xs leading-relaxed text-ink-dim">{s.body}</p>
               {i < eddSteps.length - 1 && (
@@ -318,18 +347,19 @@ function Leadership() {
             </li>
           ))}
         </ol>
+        </div>
       </div>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2">
         {awards.map((a) => (
-          <figure key={a.title} className="overflow-hidden rounded-xl border border-line bg-surface">
+          <figure key={a.title} className="card card-glow card-interactive reveal group overflow-hidden">
             <div className="relative aspect-[4/3]">
               <Image
                 src={a.photo}
                 alt={`${a.title} ceremony`}
                 fill
                 sizes="(min-width: 1024px) 280px, (min-width: 640px) 50vw, 100vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
               />
             </div>
             <figcaption className="p-5">
@@ -344,12 +374,12 @@ function Leadership() {
         ))}
       </div>
 
-      <h3 className="mt-16 font-mono text-xs uppercase tracking-[0.18em] text-ink">
+      <h3 className="mt-16 eyebrow text-ink">
         Speaking &amp; community
       </h3>
       <ul className="group/list mt-6 flex flex-col gap-10">
         {speaking.map((s) => (
-          <li key={s.title}>
+          <li key={s.title} className="reveal">
             <HoverCard className="sm:grid sm:grid-cols-8 sm:gap-6">
               <div className="mb-3 sm:col-span-2 sm:mb-0">
                 {s.photo ? (
@@ -371,7 +401,7 @@ function Leadership() {
         ))}
       </ul>
 
-      <h3 className="mt-16 font-mono text-xs uppercase tracking-[0.18em] text-ink">Publications</h3>
+      <h3 className="mt-16 eyebrow text-ink">Publications</h3>
       <ul className="mt-4 divide-y divide-line border-y border-line">
         {publications.map((p) => (
           <li key={p.title} className="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
@@ -381,12 +411,12 @@ function Leadership() {
         ))}
       </ul>
 
-      <h3 className="mt-16 font-mono text-xs uppercase tracking-[0.18em] text-ink">In their words</h3>
+      <h3 className="mt-16 eyebrow text-ink">In their words</h3>
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
         {testimonials.map((t, i) => (
           <figure
             key={t.name}
-            className={`flex flex-col rounded-xl border border-line bg-surface p-6 ${
+            className={`card card-glow reveal flex flex-col p-6 ${
               i === 0 ? "sm:col-span-2" : ""
             }`}
           >
@@ -410,7 +440,7 @@ function Leadership() {
 function Beyond() {
   return (
     <Section id="beyond" label="Beyond the build">
-      <p className="mb-10 text-ink-dim">
+      <p className="reveal mb-10 text-ink-dim">
         Not a hobbies footer — the training ground for the patience the rest of this page depends
         on.
       </p>
@@ -418,7 +448,7 @@ function Beyond() {
         {hobbies.map((h, i) => (
           <article
             key={h.name}
-            className={`flex flex-col overflow-hidden rounded-xl border border-line bg-surface ${
+            className={`card card-glow card-interactive reveal group flex flex-col overflow-hidden ${
               i === 0 ? "sm:col-span-2 sm:flex-row" : ""
             }`}
           >
@@ -431,7 +461,7 @@ function Beyond() {
                   alt={h.name}
                   fill
                   sizes="(min-width: 1024px) 300px, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                 />
               </div>
             )}
@@ -454,14 +484,14 @@ function Footer() {
     <footer className="border-t border-line pt-10 text-sm text-ink-dim">
       <div className="grid gap-8 sm:grid-cols-2">
         <div>
-          <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-ink">Education</h2>
+          <h2 className="eyebrow text-ink">Education</h2>
           <p className="mt-3 text-ink">{education.degree}</p>
           <p className="mt-1">
             {education.school} · {education.period} · {education.detail}
           </p>
         </div>
         <div>
-          <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-ink">Certifications</h2>
+          <h2 className="eyebrow text-ink">Certifications</h2>
           <ul className="mt-3 flex flex-col gap-1.5">
             {certifications.map((c) => (
               <li key={c.name} className="flex justify-between gap-4">
@@ -473,14 +503,14 @@ function Footer() {
         </div>
       </div>
 
-      <div className="mt-12 rounded-xl border border-line bg-surface p-6 sm:flex sm:items-center sm:justify-between sm:gap-6">
+      <div className="border-shimmer reveal mt-12 rounded-[var(--radius-card)] p-6 sm:flex sm:items-center sm:justify-between sm:gap-6">
         <div>
           <p className="text-lg font-medium text-ink">Building something with LLMs?</p>
           <p className="mt-1">I&rsquo;m based in Bangalore and always happy to talk shop.</p>
         </div>
         <a
           href={EMAIL}
-          className="mt-4 inline-flex shrink-0 items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-medium text-bg transition-opacity hover:opacity-90 sm:mt-0"
+          className="mt-4 inline-flex shrink-0 items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-medium text-bg shadow-[0_0_28px_-6px_var(--accent)] transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_0_36px_-4px_var(--accent)] sm:mt-0"
         >
           <MailIcon className="size-4" /> Get in touch
         </a>
