@@ -1,104 +1,109 @@
 @import "tailwindcss";
 
+/* Dark-first. Moss and saffron carry over from the original ink/moss/saffron system. */
 :root {
-  --bg: #f2f0e8;
-  --bg-raised: #ffffff;
-  --bg-sunken: #e8e5da;
-  --text: #14181a;
-  --text-dim: #5b6259;
-  --moss: #3f5d46;
-  --moss-soft: #e4e9df;
-  --saffron: #b8722a;
-  --saffron-soft: #f3e4d2;
-  --line: rgba(20, 24, 26, 0.14);
-  --line-soft: rgba(20, 24, 26, 0.08);
+  --bg: #0a0f0d;
+  --surface: rgba(255, 255, 255, 0.035);
+  --surface-hover: rgba(255, 255, 255, 0.06);
+  --text: #e8ebe6;
+  --text-dim: #97a39c;
+  --text-faint: #65716a;
+  --accent: #8fd1a4;
+  --accent-soft: rgba(143, 209, 164, 0.1);
+  --saffron: #e8ae63;
+  --saffron-soft: rgba(232, 174, 99, 0.12);
+  --line: rgba(232, 235, 230, 0.1);
+  --glow: rgba(143, 209, 164, 0.07);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #14181a;
-    --bg-raised: #1b2022;
-    --bg-sunken: #0f1213;
-    --text: #edebe2;
-    --text-dim: #9ca39a;
-    --moss: #83ab8b;
-    --moss-soft: rgba(34, 48, 38, 0.44);
-    --saffron: #e0a85c;
-    --saffron-soft: rgba(58, 42, 22, 0.44);
-    --line: rgba(237, 235, 226, 0.16);
-    --line-soft: rgba(237, 235, 226, 0.09);
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f5f4ee;
+    --surface: rgba(20, 24, 26, 0.03);
+    --surface-hover: rgba(20, 24, 26, 0.055);
+    --text: #14181a;
+    --text-dim: #535b55;
+    --text-faint: #858d87;
+    --accent: #2f6b45;
+    --accent-soft: rgba(47, 107, 69, 0.1);
+    --saffron: #a8631f;
+    --saffron-soft: rgba(168, 99, 31, 0.1);
+    --line: rgba(20, 24, 26, 0.1);
+    --glow: rgba(47, 107, 69, 0.08);
   }
-}
-
-:root[data-theme="dark"] {
-  --bg: #14181a;
-  --bg-raised: #1b2022;
-  --bg-sunken: #0f1213;
-  --text: #edebe2;
-  --text-dim: #9ca39a;
-  --moss: #83ab8b;
-  --moss-soft: rgba(34, 48, 38, 0.44);
-  --saffron: #e0a85c;
-  --saffron-soft: rgba(58, 42, 22, 0.44);
-  --line: rgba(237, 235, 226, 0.16);
-  --line-soft: rgba(237, 235, 226, 0.09);
-}
-
-:root[data-theme="light"] {
-  --bg: #f2f0e8;
-  --bg-raised: #ffffff;
-  --bg-sunken: #e8e5da;
-  --text: #14181a;
-  --text-dim: #5b6259;
-  --moss: #3f5d46;
-  --moss-soft: #e4e9df;
-  --saffron: #b8722a;
-  --saffron-soft: #f3e4d2;
-  --line: rgba(20, 24, 26, 0.14);
-  --line-soft: rgba(20, 24, 26, 0.08);
 }
 
 @theme inline {
   --color-bg: var(--bg);
-  --color-bg-raised: var(--bg-raised);
-  --color-bg-sunken: var(--bg-sunken);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
   --color-ink: var(--text);
   --color-ink-dim: var(--text-dim);
-  --color-moss: var(--moss);
-  --color-moss-soft: var(--moss-soft);
+  --color-ink-faint: var(--text-faint);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
   --color-saffron: var(--saffron);
   --color-saffron-soft: var(--saffron-soft);
   --color-line: var(--line);
-  --color-line-soft: var(--line-soft);
 
-  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, ui-serif, serif;
-  --font-body: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --font-serif: var(--font-instrument), Georgia, serif;
 }
 
-* {
-  box-sizing: border-box;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: var(--saffron-soft);
+  background: var(--accent-soft);
+  color: var(--text);
 }
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--saffron);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
+  border-radius: 4px;
 }
 
 h1,
 h2,
 h3 {
   text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise {
+    animation: none;
+  }
 }

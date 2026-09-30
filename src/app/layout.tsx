@@ -1,12 +1,21 @@
 import type { Metadata } from "next";
+import { Inter, JetBrains_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
-import Nav from "@/components/nav";
-import Footer from "@/components/footer";
+import Spotlight from "@/components/spotlight";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" });
+const instrument = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
+});
 
 export const metadata: Metadata = {
-  title: "Sharath S Rao",
+  title: "Sharath S Rao — GenAI Systems Engineer",
   description:
-    "GenAI Systems Engineer & Technical Leader — builds systems that hold up, in production, on a team, and in the ground.",
+    "GenAI systems engineer and technical leader. Multi-agent LLM systems, RAG, and evaluation-driven development — built to hold up in production.",
 };
 
 export default function RootLayout({
@@ -15,11 +24,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
-      <body className="min-h-full flex flex-col font-body text-ink bg-bg">
-        <Nav />
-        <main className="flex-1">{children}</main>
-        <Footer />
+    <html
+      lang="en"
+      className={`${inter.variable} ${jetbrains.variable} ${instrument.variable}`}
+    >
+      <body className="font-sans text-ink bg-bg leading-relaxed">
+        <Spotlight />
+        {children}
       </body>
     </html>
   );
