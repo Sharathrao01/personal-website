@@ -61,7 +61,7 @@ export default function About() {
 
       <SectionHeading
         eyebrow="In their words"
-        title="Two strangers, the same word"
+        title="Two strangers, the same read"
         sub="Two people who never met each other independently landed on the same read of the school advisory work."
       />
       <div className="grid md:grid-cols-2 gap-4 mb-10">

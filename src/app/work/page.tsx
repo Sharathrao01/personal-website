@@ -3,7 +3,7 @@
 import { useState } from "react";
 import SectionHeading from "@/components/section-heading";
 import { Card } from "@/components/card";
-import { workEntries, education, certifications } from "@/lib/data";
+import { workEntries, education } from "@/lib/data";
 
 export default function Work() {
   const [view, setView] = useState<"roles" | "projects">("roles");
@@ -87,25 +87,6 @@ export default function Work() {
           {education.degree}, {education.school} ({education.period}) — {education.detail}
         </p>
         <p className="text-sm text-ink-dim">Schooling: {education.schooling}</p>
-      </div>
-
-      <div className="mt-10 flex flex-col gap-1">
-        <span className="font-mono text-[11px] uppercase tracking-wider text-ink-dim">
-          Certifications
-        </span>
-        <div className="flex flex-col divide-y divide-line border border-line rounded-sm overflow-hidden mt-1">
-          {certifications.map((c) => (
-            <div
-              key={c.name}
-              className="bg-bg-raised px-4 py-3 flex justify-between items-baseline gap-4"
-            >
-              <span className="text-sm">{c.name}</span>
-              <span className="font-mono text-xs text-ink-dim whitespace-nowrap">
-                {c.issuer} · {c.date}
-              </span>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );

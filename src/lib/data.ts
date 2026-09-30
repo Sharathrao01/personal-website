@@ -199,31 +199,31 @@ export type Hobby = {
 export const hobbies: Hobby[] = [
   {
     name: "Carnatic flute",
-    copy: "Years of disciplined riyaz under a fixed tradition — the opposite of moving fast and breaking things.",
-    tie: "Ties to: EDD itself — a practice built on repetition until failure cases stop recurring.",
+    copy: "I play Carnatic flute, a tradition learned through years of riyaz inside a fixed form. Each session is the same phrase, played again until it stops slipping — the opposite of moving fast and breaking things.",
+    tie: "It's the instinct behind Evaluation-Driven Development: repeat until the failure case stops recurring, then make the repetition automatic.",
     photo: "/photos/hobby/flute.jpg",
   },
   {
     name: "Painting",
-    copy: "Watercolor — a macaw, layered wash by wash, signed and dated.",
-    tie: "Ties to: an unforgiving medium with no undo — correction happens inside the constraint, the same discipline as tuning a RAG pipeline until accuracy holds at ~90%.",
+    copy: "I paint in watercolor, a medium with no undo. The macaw here was built up wash by wash, then signed and dated.",
+    tie: "Correcting inside a constraint like that is the same discipline as tuning a RAG pipeline until accuracy holds at ~90%.",
     photo: "/photos/hobby/painting-hobby.jpg",
   },
   {
     name: "Teaching government school children",
-    copy: "Teaching concepts to students with no shared jargon to lean on — forces real clarity.",
-    tie: "Ties to: explaining LLM systems to non-technical stakeholders, and the prompt-engineering sessions run at KSIT, JSS, SJCE Mysore, and Presidency University.",
+    copy: "Since 2019 I've headed the advisory committee at Basavanagudi Boys Higher Primary School, and I teach its children directly. There's no shared jargon to lean on in that courtyard, so an explanation either lands or it doesn't.",
+    tie: "That's the bar I hold when explaining LLM systems to non-technical stakeholders, and in prompt-engineering sessions at KSIT, JSS, SJCE Mysore, and Presidency University.",
     photo: "/photos/charity/teaching-village-kids.jpg",
   },
   {
     name: "Mentoring juniors",
-    copy: "Direct extension of leading the 8-engineer team — the individual version of the same instinct.",
-    tie: "Ties to: the Emerging Leader Award and Captain of Change Agents recognition — leadership recognized before it was a job title.",
+    copy: "Mentoring juniors is the one-to-one version of leading my 8-engineer team. It was recognized before it was a job title — first as Captain of Change Agents, later with the Emerging Leader Award.",
+    tie: "The work is the same at either scale: hand things off well enough that they hold without you.",
   },
   {
     name: "Gardening",
-    copy: "Systems that need tending on a schedule you don't fully control — weather, soil, time.",
-    tie: "Ties to: multi-tenant architecture and semantic search that has to keep working as conditions (data, scale, users) shift under it.",
+    copy: "I garden, which means tending a system on a schedule I don't fully control — weather, soil, time. What I plant is only half the result; what the conditions do to it is the other half.",
+    tie: "It's the mindset behind multi-tenant architecture and semantic search that has to keep working as data, scale, and users shift under it.",
   },
 ];
 
