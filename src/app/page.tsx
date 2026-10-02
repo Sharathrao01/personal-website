@@ -481,35 +481,39 @@ function Leadership() {
         <EddPipeline />
 
         <Reveal className="mt-28">
-          <article className="card card-glow group relative overflow-hidden md:grid md:grid-cols-[1.05fr_1fr]">
-            <div className="relative min-h-[18rem] overflow-hidden md:min-h-full">
-              <Image
-                src={changeAgents.photo}
-                alt="Sharath leading a Change Agents committee meeting at Zysk"
-                fill
-                sizes="(min-width: 768px) 600px, 100vw"
-                className="object-cover transition-transform duration-1000 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-black/20" />
-              <div className="absolute left-4 top-4 flex animate-float items-center gap-3 rounded-2xl md:bottom-4 md:top-auto border border-white/15 bg-black/55 px-4 py-3 text-white backdrop-blur-md">
-                <span className="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-saffron-300 to-moss-300 text-black">
+          <article className="card card-glow group relative overflow-hidden lg:grid lg:grid-cols-[1.15fr_1fr] lg:items-center">
+            {/* Framed at the photo's own 4:3 ratio, so the whole room is always visible. */}
+            <div className="p-3 sm:p-4 lg:p-5 lg:pr-0">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-xl ring-1 ring-line">
+                <Image
+                  src={changeAgents.photo}
+                  alt="Sharath leading a Change Agents committee meeting at Zysk"
+                  fill
+                  quality={90}
+                  sizes="(min-width: 1152px) 600px, (min-width: 1024px) 52vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+
+            <div className="relative p-7 pt-4 sm:p-8 sm:pt-5 lg:p-10">
+              <p className="eyebrow text-saffron">Culture leadership</p>
+              <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink md:text-3xl">{changeAgents.role}</h3>
+              <p className="text-sm text-accent">{changeAgents.org}</p>
+              <p className="mt-4 leading-relaxed text-ink-dim">{changeAgents.summary}</p>
+
+              <div className="mt-6 flex items-center gap-4 rounded-2xl border border-saffron/30 bg-saffron-soft px-4 py-3.5">
+                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-saffron-300 to-moss-300 text-black">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden className="size-5">
                     <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15Z" />
                     <path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5A2.5 2.5 0 0 1 4 20.5ZM8 7h8M8 10.5h6" />
                   </svg>
                 </span>
                 <div>
-                  <div className="text-[11px] uppercase tracking-wider text-white/60">First-ever Zysk magazine</div>
-                  <div className="font-serif text-xl leading-tight">{changeAgents.magazine}</div>
+                  <div className="text-[11px] uppercase tracking-wider text-ink-faint">First-ever Zysk magazine</div>
+                  <div className="font-serif text-2xl leading-tight text-ink">{changeAgents.magazine}</div>
                 </div>
               </div>
-            </div>
-
-            <div className="relative p-7 md:p-10">
-              <p className="eyebrow text-saffron">Culture leadership</p>
-              <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink md:text-3xl">{changeAgents.role}</h3>
-              <p className="text-sm text-accent">{changeAgents.org}</p>
-              <p className="mt-4 leading-relaxed text-ink-dim">{changeAgents.summary}</p>
 
               <ul className="mt-6 flex flex-wrap gap-2" aria-label="Committees">
                 {changeAgents.committees.map((c, i) => (
