@@ -57,7 +57,7 @@ export default function Home() {
     <>
       <a
         href="#about"
-        className="fixed left-4 top-4 z-[70] -translate-y-24 rounded-full bg-accent px-4 py-2 text-bg focus-visible:translate-y-0"
+        className="fixed left-4 top-4 z-[70] -translate-y-32 rounded-full bg-accent px-4 py-2 text-bg focus-visible:translate-y-0"
       >
         Skip to content
       </a>
@@ -381,9 +381,54 @@ function ExperienceSection() {
 
 /* --------------------------------- Projects --------------------------------- */
 
-const projectSpan = ["md:col-span-4", "md:col-span-2", "md:col-span-3", "md:col-span-3"];
+function Tags({ tags }: { tags: string[] }) {
+  return (
+    <ul className="mt-5 flex flex-wrap gap-2" aria-label="Technologies">
+      {tags.map((t) => (
+        <li key={t} className="tag">
+          {t}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// Faint glow in the card corner that swells on hover.
+function CornerGlow() {
+  return (
+    <div
+      aria-hidden
+      className="absolute -right-16 -top-16 size-48 rounded-full bg-accent/10 blur-3xl transition-transform duration-700 group-hover:scale-150"
+    />
+  );
+}
+
+function Metric({ value, label, big = false }: { value: string; label: string; big?: boolean }) {
+  return (
+    <div>
+      <div
+        className={`bg-gradient-to-br from-saffron to-accent bg-clip-text font-mono font-semibold text-transparent ${
+          big ? "text-6xl md:text-7xl" : "text-5xl"
+        }`}
+      >
+        {value}
+      </div>
+      {/* Fixed two-line height so summaries start on the same line across a row. */}
+      <p className="mt-1 min-h-[2.5rem] text-sm leading-5 text-ink-faint">{label}</p>
+    </div>
+  );
+}
+
+// Rows of 2 (sm) and 3 (lg, on a six-column grid); a short last row stretches to fill it.
+function repoSpan(i: number, n: number) {
+  const sm = n % 2 === 1 && i === n - 1 ? "sm:col-span-2" : "";
+  const lastRow = n % 3;
+  const lg = lastRow && i >= n - lastRow ? (lastRow === 2 ? "lg:col-span-3" : "lg:col-span-6") : "lg:col-span-2";
+  return `${sm} ${lg}`;
+}
 
 function Projects() {
+  const [featured, ...rest] = projects;
   return (
     <Section id="projects">
       <Container>
@@ -398,29 +443,37 @@ function Projects() {
           sub="Every project here shipped to real users. The number on each card is the one I'd defend in an interview."
         />
 
-        <div className="grid gap-5 md:grid-cols-6">
-          {projects.map((p, i) => (
-            <Reveal key={p.name} delay={(i % 2) * 0.1} className={projectSpan[i] ?? "md:col-span-3"}>
+        {/* Featured project across the full width, then three equal cards. */}
+        <Reveal>
+          <Tilt className="group rounded-[var(--radius-card)]" max={2}>
+            <article className="card card-glow relative grid gap-8 overflow-hidden p-7 md:grid-cols-[1.6fr_1fr] md:items-center md:p-10">
+              <CornerGlow />
+              <div>
+                <p className="eyebrow text-ink-faint">Featured · {featured.kind}</p>
+                <h3 className="mt-3 text-3xl font-semibold tracking-tight text-ink">{featured.name}</h3>
+                <p className="mt-4 leading-relaxed text-ink-dim">{featured.summary}</p>
+                <Tags tags={featured.tags} />
+              </div>
+              <div className="border-line md:border-l md:pl-10">
+                <Metric value={featured.metric} label={featured.metricLabel} big />
+              </div>
+            </article>
+          </Tilt>
+        </Reveal>
+
+        <div className="mt-5 grid gap-5 lg:grid-cols-3">
+          {rest.map((p, i) => (
+            <Reveal key={p.name} delay={i * 0.1} className="h-full">
               <Tilt className="group h-full rounded-[var(--radius-card)]" max={4}>
-                <article className="card card-glow relative flex h-full flex-col overflow-hidden p-7 md:p-8">
-                  <div
-                    aria-hidden
-                    className="absolute -right-16 -top-16 size-48 rounded-full bg-accent/10 blur-3xl transition-transform duration-700 group-hover:scale-150"
-                  />
+                <article className="card card-glow relative flex h-full flex-col overflow-hidden p-7">
+                  <CornerGlow />
                   <p className="eyebrow text-ink-faint">{p.kind}</p>
                   <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink">{p.name}</h3>
-                  <div className="mt-6 bg-gradient-to-br from-saffron to-accent bg-clip-text font-mono text-5xl font-semibold text-transparent md:text-6xl">
-                    {p.metric}
+                  <div className="mt-6">
+                    <Metric value={p.metric} label={p.metricLabel} />
                   </div>
-                  <p className="mt-1 text-sm text-ink-faint">{p.metricLabel}</p>
-                  <p className="mt-5 flex-1 text-sm leading-relaxed text-ink-dim">{p.summary}</p>
-                  <ul className="mt-5 flex flex-wrap gap-2" aria-label="Technologies">
-                    {p.tags.map((t) => (
-                      <li key={t} className="tag">
-                        {t}
-                      </li>
-                    ))}
-                  </ul>
+                  <p className="mt-4 flex-1 text-sm leading-relaxed text-ink-dim">{p.summary}</p>
+                  <Tags tags={p.tags} />
                 </article>
               </Tilt>
             </Reveal>
@@ -436,9 +489,9 @@ function Projects() {
           </div>
           <p className="mt-2 text-ink-dim">Open-source GenAI projects I&rsquo;m building commit by commit.</p>
         </Reveal>
-        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
           {openSource.map((r, i) => (
-            <li key={r.name}>
+            <li key={r.name} className={repoSpan(i, openSource.length)}>
               <Reveal delay={(i % 3) * 0.08} className="h-full">
                 <a
                   href={`${GITHUB}/${r.name}`}

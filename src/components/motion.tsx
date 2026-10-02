@@ -79,7 +79,7 @@ export function Tilt({
   const glareY = useTransform(py, (v) => `${v * 100}%`);
 
   return (
-    <div className="[perspective:1000px]">
+    <div className="h-full [perspective:1000px]">
       <motion.div
         ref={ref}
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
