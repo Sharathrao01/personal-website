@@ -140,6 +140,13 @@ export const awards = [
     photo: "/photos/awards/emerging-leader-2025.jpg",
   },
   {
+    title: "Employee of the Year — Nominee",
+    year: "2025",
+    org: "Zysk Technologies",
+    detail: "Nominated for Zysk's Employee of the Year 2025.",
+    photo: "/photos/awards/nominee-employee-of-the-year-2025.jpg",
+  },
+  {
     title: "Best Paper Award",
     year: "2024",
     org: "IEEE — Manipal Institute of Technology",
@@ -147,6 +154,21 @@ export const awards = [
     photo: "/photos/awards/best-paper-award-2025.jpg",
   },
 ];
+
+export const changeAgents = {
+  role: "CEO, Change Agents Committee",
+  org: "Zysk Technologies",
+  summary:
+    "Led a team of 12+ members heading three committees — wellbeing, technology and strategy. Under my leadership we released Merged and Deployed, the first-ever magazine for the Zysk organisation.",
+  stats: [
+    { value: "12+", label: "members led" },
+    { value: "3", label: "committees" },
+    { value: "1st", label: "Zysk magazine" },
+  ],
+  committees: ["Wellbeing", "Technology", "Strategy"],
+  magazine: "Merged and Deployed",
+  photo: "/photos/achivements/change-agents/change-agents-meeting-leading-as-a-captain.jpg",
+};
 
 export const publications = [
   {
@@ -246,7 +268,7 @@ export const hobbies: Hobby[] = [
   },
   {
     name: "Mentoring juniors",
-    copy: "Mentoring juniors is the one-to-one version of leading my 8-engineer team. It was recognized before it was a job title — first as Captain of Change Agents, later with the Emerging Leader Award.",
+    copy: "Mentoring juniors is the one-to-one version of leading my 8-engineer team. It was recognized before it was a job title — first as CEO of the Change Agents committee at Zysk, later with the Emerging Leader Award.",
     tie: "The work is the same at either scale: hand things off well enough that they hold without you.",
   },
   {

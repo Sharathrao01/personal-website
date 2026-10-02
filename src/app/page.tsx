@@ -15,6 +15,7 @@ import {
   projects,
   openSource,
   awards,
+  changeAgents,
   speaking,
   publications,
   testimonials,
@@ -479,15 +480,72 @@ function Leadership() {
         />
         <EddPipeline />
 
-        <div className="mt-28 grid gap-5 md:grid-cols-2">
+        <Reveal className="mt-28">
+          <article className="card card-glow group relative overflow-hidden md:grid md:grid-cols-[1.05fr_1fr]">
+            <div className="relative min-h-[18rem] overflow-hidden md:min-h-full">
+              <Image
+                src={changeAgents.photo}
+                alt="Sharath leading a Change Agents committee meeting at Zysk"
+                fill
+                sizes="(min-width: 768px) 600px, 100vw"
+                className="object-cover transition-transform duration-1000 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-black/20" />
+              <div className="absolute left-4 top-4 flex animate-float items-center gap-3 rounded-2xl md:bottom-4 md:top-auto border border-white/15 bg-black/55 px-4 py-3 text-white backdrop-blur-md">
+                <span className="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-saffron-300 to-moss-300 text-black">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden className="size-5">
+                    <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15Z" />
+                    <path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5A2.5 2.5 0 0 1 4 20.5ZM8 7h8M8 10.5h6" />
+                  </svg>
+                </span>
+                <div>
+                  <div className="text-[11px] uppercase tracking-wider text-white/60">First-ever Zysk magazine</div>
+                  <div className="font-serif text-xl leading-tight">{changeAgents.magazine}</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative p-7 md:p-10">
+              <p className="eyebrow text-saffron">Culture leadership</p>
+              <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink md:text-3xl">{changeAgents.role}</h3>
+              <p className="text-sm text-accent">{changeAgents.org}</p>
+              <p className="mt-4 leading-relaxed text-ink-dim">{changeAgents.summary}</p>
+
+              <ul className="mt-6 flex flex-wrap gap-2" aria-label="Committees">
+                {changeAgents.committees.map((c, i) => (
+                  <li
+                    key={c}
+                    className="flex items-center gap-2 rounded-full border border-line bg-surface px-3.5 py-1.5 text-sm text-ink transition-colors hover:border-accent/60"
+                  >
+                    <span className="font-mono text-[11px] text-accent">0{i + 1}</span>
+                    {c}
+                  </li>
+                ))}
+              </ul>
+
+              <dl className="mt-8 grid grid-cols-3 gap-3 border-t border-line pt-6">
+                {changeAgents.stats.map((s) => (
+                  <div key={s.label} className="flex flex-col">
+                    <dt className="mt-1 text-xs text-ink-faint">{s.label}</dt>
+                    <dd className="order-first bg-gradient-to-br from-saffron to-accent bg-clip-text font-mono text-3xl font-semibold text-transparent">
+                      <CountUp value={s.value} />
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </article>
+        </Reveal>
+
+        <div className="mt-20 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {awards.map((a, i) => (
             <Reveal key={a.title} delay={i * 0.1}>
-              <figure className="card card-glow card-interactive group relative aspect-[4/3] overflow-hidden">
+              <figure className="card card-glow card-interactive group relative aspect-[4/5] overflow-hidden md:aspect-[4/5]">
                 <Image
                   src={a.photo}
                   alt={`${a.title} ceremony`}
                   fill
-                  sizes="(min-width: 768px) 560px, 100vw"
+                  sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw"
                   className="object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
@@ -498,7 +556,7 @@ function Leadership() {
                     </span>
                     <span className="text-xs text-white/70">{a.org}</span>
                   </div>
-                  <div className="mt-2 text-2xl font-semibold tracking-tight">{a.title}</div>
+                  <div className="mt-2 text-xl font-semibold tracking-tight">{a.title}</div>
                   <p className="mt-1 max-w-md text-sm text-white/75">{a.detail}</p>
                 </figcaption>
               </figure>
