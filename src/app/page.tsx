@@ -539,25 +539,28 @@ function Leadership() {
 
         <div className="mt-20 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {awards.map((a, i) => (
-            <Reveal key={a.title} delay={i * 0.1}>
-              <figure className="card card-glow card-interactive group relative aspect-[4/5] overflow-hidden md:aspect-[4/5]">
-                <Image
-                  src={a.photo}
-                  alt={`${a.title} ceremony`}
-                  fill
-                  sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                <figcaption className="absolute inset-x-0 bottom-0 p-6 text-white">
-                  <div className="flex items-center gap-3">
-                    <span className="rounded-full bg-saffron-300 px-2.5 py-0.5 font-mono text-[11px] font-semibold text-black">
-                      {a.year}
-                    </span>
-                    <span className="text-xs text-white/70">{a.org}</span>
-                  </div>
-                  <div className="mt-2 text-xl font-semibold tracking-tight">{a.title}</div>
-                  <p className="mt-1 max-w-md text-sm text-white/75">{a.detail}</p>
+            <Reveal key={a.title} delay={i * 0.1} className="h-full">
+              <figure className="card card-glow card-interactive group flex h-full flex-col overflow-hidden">
+                {/* Landscape frame matches the photos, so nothing is upscaled or heavily cropped. */}
+                <div className="relative aspect-[3/2] overflow-hidden border-b border-line">
+                  <Image
+                    src={a.photo}
+                    alt={`${a.title} ceremony`}
+                    fill
+                    quality={90}
+                    sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                  />
+                  <span className="absolute left-4 top-4 rounded-full bg-saffron-300 px-2.5 py-0.5 font-mono text-[11px] font-semibold text-black shadow-lg">
+                    {a.year}
+                  </span>
+                </div>
+                <figcaption className="flex flex-1 flex-col p-6">
+                  <span className="text-xs text-ink-faint">{a.org}</span>
+                  <span className="mt-1.5 text-xl font-semibold tracking-tight text-ink group-hover:text-accent">
+                    {a.title}
+                  </span>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-dim">{a.detail}</p>
                 </figcaption>
               </figure>
             </Reveal>
