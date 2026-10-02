@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Spotlight from "@/components/spotlight";
+import { MotionProvider } from "@/components/motion";
 import { themeScript } from "@/components/theme-toggle";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -37,7 +38,7 @@ export default function RootLayout({
       <body className="font-sans text-ink bg-bg leading-relaxed">
         <Backdrop />
         <Spotlight />
-        {children}
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );

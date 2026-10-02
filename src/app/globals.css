@@ -369,3 +369,79 @@
     transform: rotate(360deg);
   }
 }
+
+/* ---------- Lively layer ---------- */
+@theme {
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+  --animate-marquee-reverse: marquee var(--marquee-duration, 40s) linear infinite reverse;
+  --animate-pan: pan 8s ease-in-out infinite alternate;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-ping-slow: ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-scroll-cue: scroll-cue 1.8s ease-in-out infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes pan {
+    from {
+      background-position: 0% 50%;
+    }
+    to {
+      background-position: 100% 50%;
+    }
+  }
+  @keyframes float {
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  @keyframes ping {
+    75%,
+    100% {
+      transform: scale(2.2);
+      opacity: 0;
+    }
+  }
+  @keyframes scroll-cue {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(12px);
+      opacity: 0;
+    }
+  }
+}
+
+/* Edges fade out so marquee content slides in and out of nothing. */
+@utility mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+@utility marquee-pause {
+  &:hover * {
+    animation-play-state: paused;
+  }
+}
+
+/* Name gradient that slowly shifts between moss, mist and saffron. */
+@utility text-aurora {
+  background-image: linear-gradient(
+    100deg,
+    var(--text) 0%,
+    var(--accent) 30%,
+    var(--text) 50%,
+    var(--saffron) 75%,
+    var(--text) 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
