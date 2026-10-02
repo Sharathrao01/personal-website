@@ -7,6 +7,7 @@ import StreamText from "@/components/stream-text";
 import CountUp from "@/components/count-up";
 import Timeline from "@/components/timeline";
 import EddPipeline from "@/components/edd-pipeline";
+import TestimonialCarousel from "@/components/testimonial-carousel";
 import { Reveal, Magnetic, Tilt } from "@/components/motion";
 import { GitHubIcon, LinkedInIcon, MailIcon, ArrowUpRight, ArrowRight } from "@/components/icons";
 import {
@@ -250,8 +251,7 @@ function MarqueeRow({ items, reverse = false }: { items: string[]; reverse?: boo
   return (
     <div className="marquee-pause flex overflow-hidden mask-fade-x">
       <ul
-        className={`flex shrink-0 gap-3 pr-3 ${reverse ? "animate-marquee-reverse" : "animate-marquee"}`}
-        style={{ ["--marquee-duration" as string]: "45s" }}
+        className={`flex shrink-0 gap-3 pr-3 [animation-duration:45s] ${reverse ? "animate-marquee-reverse" : "animate-marquee"}`}
       >
         {[...items, ...items].map((t, i) => (
           <li
@@ -561,50 +561,22 @@ function Leadership() {
 
 /* ------------------------------- Testimonials ------------------------------- */
 
-function initials(name: string) {
-  return name
-    .split(" ")
-    .filter((w) => /^[A-Z]/.test(w) && w !== "Dr")
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join("");
-}
-
 function Testimonials() {
   return (
     <section aria-labelledby="words" className="relative overflow-hidden py-24">
       <Container>
-        <Reveal>
-          <h2 id="words" className="eyebrow text-center text-accent">
+        <Reveal className="mb-10 flex flex-col items-center text-center">
+          <h2 id="words" className="eyebrow text-accent">
             In their words
           </h2>
+          <p className="mt-4 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+            What people I&rsquo;ve worked with <Serif>say.</Serif>
+          </p>
         </Reveal>
       </Container>
-      <div className="marquee-pause mt-10 flex overflow-hidden mask-fade-x">
-        <ul className="flex shrink-0 animate-marquee gap-5 pr-5" style={{ ["--marquee-duration" as string]: "80s" }}>
-          {[...testimonials, ...testimonials].map((t, i) => (
-            <li
-              key={i}
-              aria-hidden={i >= testimonials.length}
-              className="card flex w-[20rem] shrink-0 flex-col p-7 sm:w-[28rem]"
-            >
-              <span aria-hidden className="font-serif text-6xl leading-none text-accent/60">
-                &ldquo;
-              </span>
-              <blockquote className="-mt-4 flex-1 font-serif text-xl leading-snug text-ink">{t.quote}</blockquote>
-              <div className="mt-6 flex items-center gap-3">
-                <span className="grid size-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-accent/30 to-saffron/30 text-xs font-semibold text-ink">
-                  {initials(t.name)}
-                </span>
-                <div className="text-sm">
-                  <div className="font-medium text-ink">{t.name}</div>
-                  <div className="text-xs text-ink-faint">{t.context}</div>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <Reveal>
+        <TestimonialCarousel items={testimonials} />
+      </Reveal>
     </section>
   );
 }

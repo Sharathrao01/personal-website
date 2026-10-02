@@ -372,8 +372,8 @@
 
 /* ---------- Lively layer ---------- */
 @theme {
-  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
-  --animate-marquee-reverse: marquee var(--marquee-duration, 40s) linear infinite reverse;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee-reverse: marquee 40s linear infinite reverse;
   --animate-pan: pan 8s ease-in-out infinite alternate;
   --animate-float: float 6s ease-in-out infinite;
   --animate-ping-slow: ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
