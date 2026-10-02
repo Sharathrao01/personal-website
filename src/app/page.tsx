@@ -16,6 +16,7 @@ import {
   openSource,
   awards,
   changeAgents,
+  mentorship,
   speaking,
   publications,
   testimonials,
@@ -537,6 +538,36 @@ function Leadership() {
                   </div>
                 ))}
               </dl>
+            </div>
+          </article>
+        </Reveal>
+
+        <Reveal className="mt-10">
+          <article className="card card-glow overflow-hidden p-3 sm:p-4">
+            <div className="flex flex-col gap-3 px-3 pb-5 pt-4 sm:flex-row sm:items-end sm:justify-between sm:px-4">
+              <div>
+                <p className="eyebrow text-saffron">Mentorship</p>
+                <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink md:text-3xl">{mentorship.title}</h3>
+              </div>
+              <p className="max-w-md text-sm leading-relaxed text-ink-dim">{mentorship.summary}</p>
+            </div>
+            {/* Every frame uses the photos' own 1600×760 ratio, so nothing is cropped. */}
+            <div className="grid gap-3 sm:grid-cols-2">
+              {mentorship.photos.map((ph, i) => (
+                <Reveal key={ph.src} delay={i * 0.12} className={i === 0 ? "sm:col-span-2" : ""}>
+                <figure className="group relative aspect-[1600/760] overflow-hidden rounded-xl ring-1 ring-line">
+                  <Image
+                    src={ph.src}
+                    alt={ph.alt}
+                    fill
+                    quality={90}
+                    sizes={i === 0 ? "(min-width: 1152px) 1100px, 100vw" : "(min-width: 1152px) 540px, (min-width: 640px) 50vw, 100vw"}
+                    className="object-cover"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                </figure>
+                </Reveal>
+              ))}
             </div>
           </article>
         </Reveal>

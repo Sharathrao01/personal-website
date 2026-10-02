@@ -170,6 +170,17 @@ export const changeAgents = {
   photo: "/photos/achivements/change-agents/change-agents-meeting-leading-as-a-captain.jpg",
 };
 
+export const mentorship = {
+  title: "Mentoring student teams",
+  summary:
+    "Sitting across the table from student teams as they pitch and demo what they have built — listening first, then pushing on the details that decide whether an idea survives contact with real users.",
+  photos: [
+    { src: "/photos/mentorship/team-1.jpg", alt: "A student presents her team's project to Sharath while teammates look on" },
+    { src: "/photos/mentorship/team-2.jpg", alt: "Sharath listens as a student team walks him through their idea" },
+    { src: "/photos/mentorship/team-3.jpg", alt: "A team crowds around Sharath's desk to review their build on a laptop and phone" },
+  ],
+};
+
 export const publications = [
   {
     title: "Hardware Inventory Management System Using IoT",
