@@ -1,104 +1,447 @@
 @import "tailwindcss";
 
-:root {
-  --bg: #f2f0e8;
-  --bg-raised: #ffffff;
-  --bg-sunken: #e8e5da;
-  --text: #14181a;
-  --text-dim: #5b6259;
-  --moss: #3f5d46;
-  --moss-soft: #e4e9df;
-  --saffron: #b8722a;
-  --saffron-soft: #f3e4d2;
-  --line: rgba(20, 24, 26, 0.14);
-  --line-soft: rgba(20, 24, 26, 0.08);
+/* `dark:` follows the resolved theme on <html data-theme>, set before paint in layout.tsx. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ---------- Palette: full scales, usable directly (bg-moss-300, text-saffron-600…) ---------- */
+@theme {
+  --color-moss-50: #f0f7f2;
+  --color-moss-100: #dcede1;
+  --color-moss-200: #bbdcc5;
+  --color-moss-300: #8fd1a4;
+  --color-moss-400: #66b07f;
+  --color-moss-500: #4a9164;
+  --color-moss-600: #3a7550;
+  --color-moss-700: #2f6b45;
+  --color-moss-800: #274935;
+  --color-moss-900: #1c3526;
+  --color-moss-950: #0f2118;
+
+  --color-saffron-50: #fdf6ec;
+  --color-saffron-100: #f9e8cc;
+  --color-saffron-200: #f2cf95;
+  --color-saffron-300: #e8ae63;
+  --color-saffron-400: #df9440;
+  --color-saffron-500: #c9782a;
+  --color-saffron-600: #a8631f;
+  --color-saffron-700: #85491c;
+  --color-saffron-800: #6c3c1c;
+  --color-saffron-900: #5a331b;
+  --color-saffron-950: #331a0b;
+
+  --color-stone-50: #f7f6f1;
+  --color-stone-100: #eeede6;
+  --color-stone-200: #dcddd6;
+  --color-stone-300: #b9bfb9;
+  --color-stone-400: #97a39c;
+  --color-stone-500: #65716a;
+  --color-stone-600: #535b55;
+  --color-stone-700: #363e3a;
+  --color-stone-800: #1c2321;
+  --color-stone-900: #121816;
+  --color-stone-950: #0a0f0d;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --font-serif: var(--font-instrument), Georgia, serif;
+
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--letter-spacing: 0.18em;
+  --text-eyebrow--line-height: 1rem;
+
+  --radius-card: 0.875rem;
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --animate-rise: rise 0.7s var(--ease-out-soft) both;
+
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #14181a;
-    --bg-raised: #1b2022;
-    --bg-sunken: #0f1213;
-    --text: #edebe2;
-    --text-dim: #9ca39a;
-    --moss: #83ab8b;
-    --moss-soft: rgba(34, 48, 38, 0.44);
-    --saffron: #e0a85c;
-    --saffron-soft: rgba(58, 42, 22, 0.44);
-    --line: rgba(237, 235, 226, 0.16);
-    --line-soft: rgba(237, 235, 226, 0.09);
-  }
+/* ---------- Semantic tokens: what components use. Swapped per theme. ---------- */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: var(--color-stone-950);
+  --surface: rgb(255 255 255 / 0.035);
+  --surface-hover: rgb(255 255 255 / 0.06);
+  --text: #e8ebe6;
+  --text-dim: var(--color-stone-400);
+  --text-faint: var(--color-stone-500);
+  --accent: var(--color-moss-300);
+  --accent-soft: rgb(143 209 164 / 0.1);
+  --saffron: var(--color-saffron-300);
+  --saffron-soft: rgb(232 174 99 / 0.12);
+  --line: rgb(232 235 230 / 0.1);
+  --line-strong: rgb(232 235 230 / 0.18);
+  --glow: rgb(143 209 164 / 0.07);
+  --dot: rgb(232 235 230 / 0.07);
+  --card-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.04);
+  --card-shadow-hover: inset 0 1px 0 0 rgb(255 255 255 / 0.08), 0 12px 32px -12px rgb(0 0 0 / 0.6);
 }
 
-:root[data-theme="dark"] {
-  --bg: #14181a;
-  --bg-raised: #1b2022;
-  --bg-sunken: #0f1213;
-  --text: #edebe2;
-  --text-dim: #9ca39a;
-  --moss: #83ab8b;
-  --moss-soft: rgba(34, 48, 38, 0.44);
-  --saffron: #e0a85c;
-  --saffron-soft: rgba(58, 42, 22, 0.44);
-  --line: rgba(237, 235, 226, 0.16);
-  --line-soft: rgba(237, 235, 226, 0.09);
-}
-
-:root[data-theme="light"] {
-  --bg: #f2f0e8;
-  --bg-raised: #ffffff;
-  --bg-sunken: #e8e5da;
-  --text: #14181a;
-  --text-dim: #5b6259;
-  --moss: #3f5d46;
-  --moss-soft: #e4e9df;
-  --saffron: #b8722a;
-  --saffron-soft: #f3e4d2;
-  --line: rgba(20, 24, 26, 0.14);
-  --line-soft: rgba(20, 24, 26, 0.08);
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: var(--color-stone-50);
+  --surface: #ffffff;
+  --surface-hover: #ffffff;
+  --text: var(--color-stone-900);
+  --text-dim: var(--color-stone-600);
+  --text-faint: #858d87;
+  --accent: var(--color-moss-700);
+  --accent-soft: rgb(47 107 69 / 0.09);
+  --saffron: var(--color-saffron-600);
+  --saffron-soft: rgb(168 99 31 / 0.1);
+  --line: rgb(20 24 26 / 0.09);
+  --line-strong: rgb(20 24 26 / 0.16);
+  --glow: rgb(47 107 69 / 0.07);
+  --dot: rgb(20 24 26 / 0.08);
+  --card-shadow: 0 1px 2px 0 rgb(20 24 26 / 0.04);
+  --card-shadow-hover: 0 1px 2px 0 rgb(20 24 26 / 0.04), 0 14px 32px -14px rgb(20 24 26 / 0.18);
 }
 
 @theme inline {
   --color-bg: var(--bg);
-  --color-bg-raised: var(--bg-raised);
-  --color-bg-sunken: var(--bg-sunken);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
   --color-ink: var(--text);
   --color-ink-dim: var(--text-dim);
-  --color-moss: var(--moss);
-  --color-moss-soft: var(--moss-soft);
+  --color-ink-faint: var(--text-faint);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
   --color-saffron: var(--saffron);
   --color-saffron-soft: var(--saffron-soft);
   --color-line: var(--line);
-  --color-line-soft: var(--line-soft);
-
-  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, ui-serif, serif;
-  --font-body: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  --color-line-strong: var(--line-strong);
+  --shadow-card: var(--card-shadow);
+  --shadow-card-hover: var(--card-shadow-hover);
 }
 
-* {
-  box-sizing: border-box;
+/* ---------- Reusable building blocks ---------- */
+@utility card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
 }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body);
-  -webkit-font-smoothing: antialiased;
+@utility card-interactive {
+  transition:
+    border-color 200ms var(--ease-out-soft),
+    box-shadow 200ms var(--ease-out-soft),
+    transform 200ms var(--ease-out-soft);
+  &:hover {
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-2px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    &:hover {
+      transform: none;
+    }
+  }
 }
 
-::selection {
-  background: var(--saffron-soft);
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-eyebrow);
+  line-height: var(--text-eyebrow--line-height);
+  letter-spacing: var(--text-eyebrow--letter-spacing);
+  text-transform: uppercase;
 }
 
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--saffron);
-  outline-offset: 3px;
+@utility tag {
+  border-radius: 9999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 0.25rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.25rem;
 }
 
-h1,
-h2,
-h3 {
-  text-wrap: balance;
+@utility text-gradient {
+  background: linear-gradient(180deg, var(--text) 30%, color-mix(in srgb, var(--text) 62%, var(--bg)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Dot grid that fades out down the page — texture without noise. */
+@utility bg-dots {
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to bottom, black, transparent 70%);
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 250ms, color 250ms;
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--text);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-delay: 0s !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ---------- Motion ---------- */
+@theme {
+  --animate-token: token-in 0.5s var(--ease-out-soft) both;
+  --animate-caret: caret 1s steps(1) infinite;
+  --animate-spin-slow: spin 8s linear infinite;
+  --animate-drift-a: drift-a 22s ease-in-out infinite alternate;
+  --animate-drift-b: drift-b 28s ease-in-out infinite alternate;
+  --animate-beam: beam 3.2s var(--ease-out-soft) infinite;
+  --animate-shimmer: shimmer 4s linear infinite;
+
+  /* LLM-style token streaming: each word blurs in on its own delay. */
+  @keyframes token-in {
+    from {
+      opacity: 0;
+      filter: blur(6px);
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: none;
+    }
+  }
+  @keyframes caret {
+    50% {
+      opacity: 0;
+    }
+  }
+  @keyframes drift-a {
+    from {
+      transform: translate(-10%, -8%) scale(1);
+    }
+    to {
+      transform: translate(25%, 18%) scale(1.25);
+    }
+  }
+  @keyframes drift-b {
+    from {
+      transform: translate(10%, 10%) scale(1.15);
+    }
+    to {
+      transform: translate(-20%, -12%) scale(0.9);
+    }
+  }
+  @keyframes beam {
+    0% {
+      left: -10%;
+      opacity: 0;
+    }
+    15% {
+      opacity: 1;
+    }
+    85% {
+      opacity: 1;
+    }
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
+  }
+  @keyframes shimmer {
+    to {
+      --shimmer-angle: 360deg;
+    }
+  }
+}
+
+@property --shimmer-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* Scroll-driven reveal: pure CSS where supported, simply visible elsewhere. */
+@utility reveal {
+  @supports (animation-timeline: view()) {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+}
+
+/* Border that lights up under the cursor; --mx/--my are set by <Spotlight />. */
+@utility card-glow {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(
+      280px circle at var(--mx, -999px) var(--my, -999px),
+      color-mix(in srgb, var(--accent) 70%, transparent),
+      transparent 70%
+    );
+    mask:
+      linear-gradient(#000 0 0) content-box exclude,
+      linear-gradient(#000 0 0);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Rotating conic border, used for the CTA and portrait ring. */
+@utility border-shimmer {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--bg), var(--bg)) padding-box,
+    conic-gradient(
+        from var(--shimmer-angle),
+        var(--line-strong) 0%,
+        var(--accent) 12%,
+        var(--saffron) 22%,
+        var(--line-strong) 34%,
+        var(--line-strong) 100%
+      )
+      border-box;
+  animation: var(--animate-shimmer);
+}
+
+/* Referenced directly (not via an animate-* utility), so declared globally. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Lively layer ---------- */
+@theme {
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee-reverse: marquee 40s linear infinite reverse;
+  --animate-pan: pan 8s ease-in-out infinite alternate;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-ping-slow: ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-scroll-cue: scroll-cue 1.8s ease-in-out infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes pan {
+    from {
+      background-position: 0% 50%;
+    }
+    to {
+      background-position: 100% 50%;
+    }
+  }
+  @keyframes float {
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  @keyframes ping {
+    75%,
+    100% {
+      transform: scale(2.2);
+      opacity: 0;
+    }
+  }
+  @keyframes scroll-cue {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(12px);
+      opacity: 0;
+    }
+  }
+}
+
+/* Edges fade out so marquee content slides in and out of nothing. */
+@utility mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+@utility marquee-pause {
+  &:hover * {
+    animation-play-state: paused;
+  }
+}
+
+/* Name gradient that slowly shifts between moss, mist and saffron. */
+@utility text-aurora {
+  background-image: linear-gradient(
+    100deg,
+    var(--text) 0%,
+    var(--accent) 30%,
+    var(--text) 50%,
+    var(--saffron) 75%,
+    var(--text) 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }

@@ -1,12 +1,23 @@
 import type { Metadata } from "next";
+import { Inter, JetBrains_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
-import Nav from "@/components/nav";
-import Footer from "@/components/footer";
+import Spotlight from "@/components/spotlight";
+import { MotionProvider } from "@/components/motion";
+import { themeScript } from "@/components/theme-toggle";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" });
+const instrument = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
+});
 
 export const metadata: Metadata = {
-  title: "Sharath S Rao",
+  title: "Sharath S Rao — GenAI Systems Engineer",
   description:
-    "GenAI Systems Engineer & Technical Leader — builds systems that hold up, in production, on a team, and in the ground.",
+    "GenAI systems engineer and technical leader. Multi-agent LLM systems, RAG, and evaluation-driven development — built to hold up in production.",
 };
 
 export default function RootLayout({
@@ -15,12 +26,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
-      <body className="min-h-full flex flex-col font-body text-ink bg-bg">
-        <Nav />
-        <main className="flex-1">{children}</main>
-        <Footer />
+    <html
+      lang="en"
+      data-theme="dark"
+      suppressHydrationWarning
+      className={`${inter.variable} ${jetbrains.variable} ${instrument.variable}`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="font-sans text-ink bg-bg leading-relaxed">
+        <Backdrop />
+        <Spotlight />
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
+  );
+}
+
+// Slow-drifting moss and saffron glows over a fading dot grid.
+function Backdrop() {
+  return (
+    <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      <div className="absolute inset-0 bg-dots" />
+      <div className="absolute -left-[10%] -top-[20%] size-[55vmax] animate-drift-a rounded-full bg-moss-400/[0.09] blur-[120px] dark:bg-moss-300/[0.07]" />
+      <div className="absolute -right-[15%] top-[30%] size-[45vmax] animate-drift-b rounded-full bg-saffron-300/[0.08] blur-[130px] dark:bg-saffron-400/[0.05]" />
+    </div>
   );
 }
