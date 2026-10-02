@@ -465,6 +465,13 @@ function Projects() {
 
 /* -------------------------------- Leadership -------------------------------- */
 
+// Resting spot for each collage print, and where it fans out to on hover.
+const collageSpots = [
+  "left-0 top-0 z-10 -rotate-6 group-hover/collage:-translate-x-3 group-hover/collage:-rotate-9",
+  "right-0 top-[18%] z-20 rotate-[5deg] group-hover/collage:translate-x-3 group-hover/collage:rotate-[8deg]",
+  "bottom-0 left-[16%] z-30 -rotate-1 group-hover/collage:translate-y-2 group-hover/collage:rotate-1",
+];
+
 function Leadership() {
   return (
     <Section id="leadership">
@@ -543,30 +550,29 @@ function Leadership() {
         </Reveal>
 
         <Reveal className="mt-10">
-          <article className="card card-glow overflow-hidden p-3 sm:p-4">
-            <div className="flex flex-col gap-3 px-3 pb-5 pt-4 sm:flex-row sm:items-end sm:justify-between sm:px-4">
-              <div>
-                <p className="eyebrow text-saffron">Mentorship</p>
-                <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink md:text-3xl">{mentorship.title}</h3>
-              </div>
-              <p className="max-w-md text-sm leading-relaxed text-ink-dim">{mentorship.summary}</p>
+          <article className="card card-glow group/collage relative grid items-center gap-8 overflow-hidden p-6 sm:p-8 lg:grid-cols-[1fr_1.1fr]">
+            <div>
+              <p className="eyebrow text-saffron">{mentorship.eyebrow}</p>
+              <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink">{mentorship.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink-dim">{mentorship.summary}</p>
+              <ul className="mt-4 flex flex-wrap gap-2" aria-label="Details">
+                {mentorship.tags.map((t) => (
+                  <li key={t} className="tag">
+                    {t}
+                  </li>
+                ))}
+              </ul>
             </div>
-            {/* Every frame uses the photos' own 1600×760 ratio, so nothing is cropped. */}
-            <div className="grid gap-3 sm:grid-cols-2">
+
+            {/* Overlapping prints that fan out on hover; frames keep the photos' own ratio, so nothing is cropped. */}
+            <div className="relative mx-auto h-52 w-full max-w-md sm:h-60">
               {mentorship.photos.map((ph, i) => (
-                <Reveal key={ph.src} delay={i * 0.12} className={i === 0 ? "sm:col-span-2" : ""}>
-                <figure className="group relative aspect-[1600/760] overflow-hidden rounded-xl ring-1 ring-line">
-                  <Image
-                    src={ph.src}
-                    alt={ph.alt}
-                    fill
-                    quality={90}
-                    sizes={i === 0 ? "(min-width: 1152px) 1100px, 100vw" : "(min-width: 1152px) 540px, (min-width: 640px) 50vw, 100vw"}
-                    className="object-cover"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <figure
+                  key={ph.src}
+                  className={`absolute aspect-[1600/760] w-[64%] overflow-hidden rounded-lg border-4 border-bg shadow-[0_12px_32px_-12px_rgb(0_0_0/0.6)] ring-1 ring-line transition-all duration-500 ease-out hover:z-40 hover:scale-[1.08] motion-reduce:transition-none ${collageSpots[i]}`}
+                >
+                  <Image src={ph.src} alt={ph.alt} fill quality={90} sizes="(min-width: 1024px) 300px, 64vw" className="object-cover" />
                 </figure>
-                </Reveal>
               ))}
             </div>
           </article>

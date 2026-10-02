@@ -171,13 +171,15 @@ export const changeAgents = {
 };
 
 export const mentorship = {
-  title: "Mentoring student teams",
+  eyebrow: "Jury · Smart India Hackathon 2026",
+  title: "Judging the next builders",
   summary:
-    "Sitting across the table from student teams as they pitch and demo what they have built — listening first, then pushing on the details that decide whether an idea survives contact with real users.",
+    "Served on the internal jury for Smart India Hackathon 2026 at RNSIT, Bengaluru — evaluating student teams as they pitched and demoed their solutions.",
+  tags: ["Internal jury", "SIH 2026", "RNSIT, Bengaluru"],
   photos: [
-    { src: "/photos/mentorship/team-1.jpg", alt: "A student presents her team's project to Sharath while teammates look on" },
-    { src: "/photos/mentorship/team-2.jpg", alt: "Sharath listens as a student team walks him through their idea" },
-    { src: "/photos/mentorship/team-3.jpg", alt: "A team crowds around Sharath's desk to review their build on a laptop and phone" },
+    { src: "/photos/mentorship/team-1.jpg", alt: "A student presents her team's Smart India Hackathon 2026 pitch to Sharath on the jury" },
+    { src: "/photos/mentorship/team-2.jpg", alt: "Sharath evaluates a student team's idea during the SIH 2026 internal round at RNSIT" },
+    { src: "/photos/mentorship/team-3.jpg", alt: "A hackathon team gathers around Sharath's desk to demo their build on a laptop and phone" },
   ],
 };
 
