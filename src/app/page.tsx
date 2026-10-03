@@ -300,16 +300,30 @@ function About() {
                 <div className="absolute inset-0 bg-gradient-to-t from-bg/70 via-transparent to-transparent" />
               </div>
             </Tilt>
-            <div className="card absolute -right-3 top-10 animate-float bg-bg/80 px-4 py-3 backdrop-blur sm:-right-10">
-              <div className="font-mono text-xl text-saffron">24,000+</div>
-              <div className="text-xs text-ink-faint">users served</div>
+            <div className="card absolute -right-3 top-[46%] flex animate-float sm:top-10 items-center gap-3 bg-bg/80 px-4 py-3 backdrop-blur sm:-right-10">
+              <span className="grid size-8 place-items-center rounded-lg bg-saffron-soft text-saffron">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="size-4">
+                  <path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4ZM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4" />
+                </svg>
+              </span>
+              <div>
+                <div className="text-sm font-semibold text-ink">Best Paper</div>
+                <div className="text-xs text-ink-faint">IEEE · 2024</div>
+              </div>
             </div>
             <div
-              className="card absolute -left-3 bottom-12 animate-float bg-bg/80 px-4 py-3 backdrop-blur sm:-left-10"
+              className="card absolute -left-3 bottom-12 flex animate-float items-center gap-3 bg-bg/80 px-4 py-3 backdrop-blur sm:-left-10"
               style={{ animationDelay: "-3s" }}
             >
-              <div className="font-mono text-xl text-accent">~90%</div>
-              <div className="text-xs text-ink-faint">RAG accuracy</div>
+              <span className="grid size-8 place-items-center rounded-lg bg-accent-soft text-accent">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="size-4">
+                  <path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4ZM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4" />
+                </svg>
+              </span>
+              <div>
+                <div className="text-sm font-semibold text-ink">Emerging Leader</div>
+                <div className="text-xs text-ink-faint">Award · 2025</div>
+              </div>
             </div>
           </Reveal>
 
@@ -542,62 +556,71 @@ function Leadership() {
         <EddPipeline />
 
         <Reveal className="mt-28">
-          <article className="card card-glow group relative overflow-hidden lg:grid lg:grid-cols-[1.15fr_1fr] lg:items-center">
-            {/* Framed at the photo's own 4:3 ratio, so the whole room is always visible. */}
-            <div className="p-3 sm:p-4 lg:p-5 lg:pr-0">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-xl ring-1 ring-line">
-                <Image
-                  src={changeAgents.photo}
-                  alt="Sharath leading a Change Agents committee meeting at Zysk"
-                  fill
-                  quality={90}
-                  sizes="(min-width: 1152px) 600px, (min-width: 1024px) 52vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
+          <article className="card card-glow relative overflow-hidden p-3 sm:p-4">
+            {/* Photos share one height; each width follows its own ratio, so neither is cropped. */}
+            <div className="flex flex-col gap-3 sm:flex-row">
+              {changeAgents.photos.map((ph) => (
+                <div
+                  key={ph.src}
+                  className="relative overflow-hidden rounded-xl ring-1 ring-line"
+                  style={{ aspectRatio: `${ph.width} / ${ph.height}`, flex: `${ph.width / ph.height} 1 0%` }}
+                >
+                  <Image
+                    src={ph.src}
+                    alt={ph.alt}
+                    fill
+                    quality={90}
+                    sizes="(min-width: 1152px) 620px, (min-width: 640px) 56vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
             </div>
 
-            <div className="relative p-7 pt-4 sm:p-8 sm:pt-5 lg:p-10">
-              <p className="eyebrow text-saffron">Culture leadership</p>
-              <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink md:text-3xl">{changeAgents.role}</h3>
-              <p className="text-sm text-accent">{changeAgents.org}</p>
-              <p className="mt-4 leading-relaxed text-ink-dim">{changeAgents.summary}</p>
-
-              <div className="mt-6 flex items-center gap-4 rounded-2xl border border-saffron/30 bg-saffron-soft px-4 py-3.5">
-                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-saffron-300 to-moss-300 text-black">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden className="size-5">
-                    <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15Z" />
-                    <path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5A2.5 2.5 0 0 1 4 20.5ZM8 7h8M8 10.5h6" />
-                  </svg>
-                </span>
-                <div>
-                  <div className="text-[11px] uppercase tracking-wider text-ink-faint">First-ever Zysk magazine</div>
-                  <div className="font-serif text-2xl leading-tight text-ink">{changeAgents.magazine}</div>
-                </div>
+            <div className="grid gap-8 px-4 pb-5 pt-7 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-7 lg:pb-7">
+              <div>
+                <p className="eyebrow text-saffron">Culture leadership</p>
+                <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink md:text-3xl">{changeAgents.role}</h3>
+                <p className="text-sm text-accent">{changeAgents.org}</p>
+                <p className="mt-4 leading-relaxed text-ink-dim">{changeAgents.summary}</p>
               </div>
-
-              <ul className="mt-6 flex flex-wrap gap-2" aria-label="Committees">
-                {changeAgents.committees.map((c, i) => (
-                  <li
-                    key={c}
-                    className="flex items-center gap-2 rounded-full border border-line bg-surface px-3.5 py-1.5 text-sm text-ink transition-colors hover:border-accent/60"
-                  >
-                    <span className="font-mono text-[11px] text-accent">0{i + 1}</span>
-                    {c}
-                  </li>
-                ))}
-              </ul>
-
-              <dl className="mt-8 grid grid-cols-3 gap-3 border-t border-line pt-6">
-                {changeAgents.stats.map((s) => (
-                  <div key={s.label} className="flex flex-col">
-                    <dt className="mt-1 text-xs text-ink-faint">{s.label}</dt>
-                    <dd className="order-first bg-gradient-to-br from-saffron to-accent bg-clip-text font-mono text-3xl font-semibold text-transparent">
-                      <CountUp value={s.value} />
-                    </dd>
+              <div>
+                <div className="flex items-center gap-4 rounded-2xl border border-saffron/30 bg-saffron-soft px-4 py-3.5">
+                  <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-saffron-300 to-moss-300 text-black">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden className="size-5">
+                      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15Z" />
+                      <path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5A2.5 2.5 0 0 1 4 20.5ZM8 7h8M8 10.5h6" />
+                    </svg>
+                  </span>
+                  <div>
+                    <div className="text-[11px] uppercase tracking-wider text-ink-faint">First-ever Zysk magazine</div>
+                    <div className="font-serif text-2xl leading-tight text-ink">{changeAgents.magazine}</div>
                   </div>
-                ))}
-              </dl>
+                </div>
+  
+                <ul className="mt-6 flex flex-wrap gap-2" aria-label="Committees">
+                  {changeAgents.committees.map((c, i) => (
+                    <li
+                      key={c}
+                      className="flex items-center gap-2 rounded-full border border-line bg-surface px-3.5 py-1.5 text-sm text-ink transition-colors hover:border-accent/60"
+                    >
+                      <span className="font-mono text-[11px] text-accent">0{i + 1}</span>
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+  
+                <dl className="mt-8 grid grid-cols-3 gap-3 border-t border-line pt-6">
+                  {changeAgents.stats.map((s) => (
+                    <div key={s.label} className="flex flex-col">
+                      <dt className="mt-1 text-xs text-ink-faint">{s.label}</dt>
+                      <dd className="order-first bg-gradient-to-br from-saffron to-accent bg-clip-text font-mono text-3xl font-semibold text-transparent">
+                        <CountUp value={s.value} />
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             </div>
           </article>
         </Reveal>

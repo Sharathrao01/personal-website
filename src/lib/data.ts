@@ -167,7 +167,21 @@ export const changeAgents = {
   ],
   committees: ["Wellbeing", "Technology", "Strategy"],
   magazine: "Merged and Deployed",
-  photo: "/photos/achivements/change-agents/change-agents-meeting-leading-as-a-captain.jpg",
+  // Width/height are the files' real pixel sizes; the card uses them to show each photo uncropped.
+  photos: [
+    {
+      src: "/photos/achivements/change-agents/group-pic.jpg",
+      alt: "Sharath with the Change Agents committee team at Zysk",
+      width: 1536,
+      height: 914,
+    },
+    {
+      src: "/photos/achivements/change-agents/change-agents-meeting-leading-as-a-captain.jpg",
+      alt: "Sharath leading a Change Agents committee meeting at Zysk",
+      width: 1800,
+      height: 1350,
+    },
+  ],
 };
 
 export const mentorship = {
