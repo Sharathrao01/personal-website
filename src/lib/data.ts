@@ -8,9 +8,17 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
+    role: "Associate Consultant — GenAI",
+    org: "Infosys · Engineering Team",
+    period: "Oct 2026 — Present",
+    summary:
+      "Part of the GenAI team in Infosys Engineering, building enterprise-scale AI/ML solutions that integrate IoT and cloud services with AI.",
+    tags: ["Generative AI", "Enterprise AI", "IoT", "Cloud", "Machine learning"],
+  },
+  {
     role: "Technical Head — AI, Full Stack & QA",
     org: "TestMySkills.ai · Zyni Innovations",
-    period: "2025 — Present",
+    period: "2025 — 2026",
     summary:
       "Founding engineer across AI systems, full-stack and quality engineering on a multi-tenant B2C/B2B skill-assessment platform. Pioneered Evaluation-Driven Development, scaled the platform to 24,000+ users with async pipelines, model routing and fault-tolerant fallbacks, and lead an 8-engineer team owning architecture (HLD + LLD) and delivery.",
     tags: ["LangGraph", "RAG", "LangSmith", "pgvector", "Next.js", "NestJS", "PostgreSQL"],
@@ -167,7 +175,21 @@ export const changeAgents = {
   ],
   committees: ["Wellbeing", "Technology", "Strategy"],
   magazine: "Merged and Deployed",
-  photo: "/photos/achivements/change-agents/change-agents-meeting-leading-as-a-captain.jpg",
+  // Width/height are the files' real pixel sizes; the card uses them to show each photo uncropped.
+  photos: [
+    {
+      src: "/photos/achivements/change-agents/group-pic.jpg",
+      alt: "Sharath with the Change Agents committee team at Zysk",
+      width: 1536,
+      height: 914,
+    },
+    {
+      src: "/photos/achivements/change-agents/change-agents-meeting-leading-as-a-captain.jpg",
+      alt: "Sharath leading a Change Agents committee meeting at Zysk",
+      width: 1800,
+      height: 1350,
+    },
+  ],
 };
 
 export const mentorship = {
