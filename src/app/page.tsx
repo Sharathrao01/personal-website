@@ -143,7 +143,7 @@ function Hero() {
               <span className="absolute inline-flex size-full animate-ping-slow rounded-full bg-accent" />
               <span className="relative inline-flex size-2 rounded-full bg-accent" />
             </span>
-            Technical Head — AI at TestMySkills.ai · Bangalore
+            Associate Consultant — GenAI at Infosys · Bangalore
           </div>
 
           <h1
@@ -167,7 +167,7 @@ function Hero() {
               start={0.7}
               step={0.045}
               tokens={[
-                "GenAI systems engineer and technical leader — shipping LLM systems to production, leading the team that builds them, and teaching what I learn along the way.",
+                "GenAI systems engineer and technical leader — building enterprise-scale AI/ML solutions, shipping LLM systems to production, and teaching what I learn along the way.",
               ]}
             />
           </p>
@@ -340,9 +340,10 @@ function About() {
             <Reveal delay={0.1} className="-mt-6 flex flex-col gap-5 text-lg leading-relaxed text-ink-dim">
               <p>
                 I started as an intern writing prompt-engineering frameworks before function calling existed
-                in most LLM APIs. Today I&rsquo;m <B>Technical Head</B> at <B>TestMySkills.ai</B>, leading an{" "}
-                <B>8-engineer team</B> and owning the architecture of a platform that serves{" "}
-                <B>24,000+ users</B>.
+                in most LLM APIs. I went on to lead an <B>8-engineer team</B> as Technical Head at{" "}
+                <B>TestMySkills.ai</B>, owning the architecture of a platform that serves <B>24,000+ users</B>.
+                Today I&rsquo;m an <B>Associate Consultant</B> in the <B>GenAI team at Infosys</B>, building{" "}
+                <B>enterprise-scale AI/ML solutions</B> that bring IoT and cloud services together with AI.
               </p>
               <p>
                 My day-to-day is <B>multi-agent systems on LangGraph</B>, <B>RAG pipelines</B>{" "}tuned until they
